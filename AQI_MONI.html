@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#f3f5f0">
+	<title>Air Signal | Live air & weather</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="front.css">
+</head>
+<body>
+	<div class="shell">
+		<header class="topbar">
+			<a class="brand" href="/" aria-label="Air Signal home"><span class="brand-icon">〰</span>AIR<span class="brand-light">SIGNAL</span></a>
+			<div class="live-mark"><i></i> LIVE ATMOSPHERE</div>
+			<time id="clock">LOCAL TIME</time>
+		</header>
+		<main>
+			<section class="intro">
+				<div><span class="eyebrow">YOUR AIR, RIGHT NOW</span><h1 id="place-title">Finding your air<span>.</span></h1><p id="place-subtitle">Getting a nearby reading</p></div>
+				<div class="location-tools">
+					<form id="search-form" role="search">
+						<label class="search-wrap"><span aria-hidden="true">⌕</span><input id="city-search" type="search" placeholder="Search any city" autocomplete="off" aria-label="Search any city"><button type="submit" aria-label="Search city">Search</button></label>
+						<div id="suggestions" class="suggestions" role="listbox" aria-label="Matching cities" hidden></div>
+					</form>
+					<button id="my-location" class="location-button" type="button"><span aria-hidden="true">◎</span> My location</button>
+				</div>
+			</section>
+			<div class="status" aria-live="polite"><i id="status-dot"></i><span id="status-text">Loading live readings</span><span id="reading-time"></span></div>
+
+			<section class="main-grid" aria-label="Live air quality and weather">
+				<article class="aqi-panel" id="aqi-panel">
+					<div class="aqi-copy">
+						<div class="panel-kicker"><span>✳</span> AIR QUALITY INDEX <small>US AQI</small></div>
+						<div class="aqi-number"><strong id="aqi">--</strong><small>AQI</small></div>
+						<span id="aqi-label" class="aqi-label">Waiting for data</span>
+						<p id="aqi-message">Live air quality at this location.</p>
+					</div>
+					<div class="gauge" aria-label="Air quality index gauge"><div class="gauge-center"><strong id="gauge-number">--</strong><span>INDEX</span></div><div class="gauge-scale"><span>0</span><span>500</span></div></div>
+					<div class="aqi-footer"><span>MAIN AQI CONTRIBUTOR</span><strong id="main-pollutant">--</strong><small>EPA index scale</small></div>
+				</article>
+				<article class="weather-panel">
+					<div class="weather-heading"><div><span class="eyebrow">OUTSIDE, RIGHT NOW</span><h2>Conditions</h2></div><span id="weather-icon" aria-hidden="true">☼</span></div>
+					<div class="temperature-line"><strong id="temperature">--°</strong><div><b id="weather-description">Loading</b><span>Feels like <span id="feels-like">--°</span></span></div></div>
+					<div class="weather-rule"></div>
+					<div class="weather-stats">
+						<div><span>◌</span><small>HUMIDITY</small><b id="humidity">--%</b></div>
+						<div><span>≋</span><small>WIND</small><b id="wind">-- km/h</b></div>
+						<div><span>☀</span><small>UV INDEX</small><b id="uv">--</b></div>
+					</div>
+					<p class="weather-source">Live meteorological conditions · Open-Meteo</p>
+				</article>
+			</section>
+
+			<section class="pollutants" aria-labelledby="pollutant-title">
+				<div class="section-heading"><div><span class="eyebrow">WHAT'S IN THE AIR</span><h2 id="pollutant-title">Pollutant levels</h2></div><span>CURRENT CONCENTRATION</span></div>
+				<div class="pollutant-grid">
+					<article class="pollutant"><div class="pollutant-name"><i class="pm25-dot"></i>Fine particles <b>PM<sub>2.5</sub></b></div><div class="pollutant-value"><strong id="pm25">--</strong><span>µg/m³</span></div><div class="meter"><i id="meter-pm25"></i></div><small>Small airborne particles</small></article>
+					<article class="pollutant"><div class="pollutant-name"><i class="pm10-dot"></i>Coarse particles <b>PM<sub>10</sub></b></div><div class="pollutant-value"><strong id="pm10">--</strong><span>µg/m³</span></div><div class="meter"><i id="meter-pm10"></i></div><small>Dust and pollen</small></article>
+					<article class="pollutant"><div class="pollutant-name"><i class="ozone-dot"></i>Ozone <b>O<sub>3</sub></b></div><div class="pollutant-value"><strong id="ozone">--</strong><span>µg/m³</span></div><div class="meter"><i id="meter-ozone"></i></div><small>Ground-level ozone</small></article>
+					<article class="pollutant"><div class="pollutant-name"><i class="no2-dot"></i>Nitrogen dioxide <b>NO<sub>2</sub></b></div><div class="pollutant-value"><strong id="no2">--</strong><span>µg/m³</span></div><div class="meter"><i id="meter-no2"></i></div><small>Traffic-related gas</small></article>
+				</div>
+			</section>
+			<footer><span>MADE FOR A CLEARER PICTURE</span><span>Data provided by <a href="https://open-meteo.com/" target="_blank" rel="noreferrer">Open-Meteo</a></span></footer>
+		</main>
+	</div>
+	<script src="end.js" defer></script>
+</body>
+</html>

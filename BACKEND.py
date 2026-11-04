@@ -7,7 +7,9 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parent
-PORT = 8000
+import os
+
+PORT = int(os.environ.get("PORT", 8000))
 
 
 def fetch_json(url):
@@ -68,7 +70,7 @@ class Handler(SimpleHTTPRequestHandler):
 				return self.send_json({"weather": weather.get("current", {}), "air": air.get("current", {})})
 
 			if parsed.path == "/":
-				self.path = "/frontend.html"
+				self.path = "/AQI_MONI.html"
 			return super().do_GET()
 		except (KeyError, ValueError, IndexError):
 			return self.send_json({"error": "Enter a valid location."}, 400)
@@ -82,7 +84,7 @@ class Handler(SimpleHTTPRequestHandler):
 
 
 if __name__ == "__main__":
-	server = ThreadingHTTPServer(("127.0.0.1", PORT), Handler)
+	server = ThreadingHTTPServer(("0.0.0.0", PORT), Handler)
 	print(f"Air Signal ready at http://127.0.0.1:{PORT}")
 	print("Press Ctrl+C to stop.")
 	try:
